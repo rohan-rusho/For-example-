@@ -1,0 +1,150 @@
+q1: Write a program in C++ to check whether a number is positive, negative, or zero using a template. 
+-----------------------------------------------------------------------------------------------------------
+ans: correct .
+---------------------------------
+#include <iostream>
+using namespace std;
+template <class T>
+class Check
+{
+    T num;
+
+public:
+    Check(T n) : num(n) {}
+
+    void chk()
+    {
+        if (num > 0)
+            cout << "Positive";
+        else if (num < 0)
+            cout << "Negative";
+        else
+            cout << "Zero";
+    }
+};
+
+int main()
+{
+    Check<int> c(0);
+    c.chk();
+    return 0;
+}
+------------------------------------------------------------------------
+2. Write a C++ program to swap first and last digits of any number using exception.
+------------------------------------------------------------------
+ans; not completed. [ stil have some problem ]
+------------------------------------------------
+#include<iostream>
+#include<exception>
+using namespace std;
+
+class InvalidInputException: public exception
+{
+  public:
+    const char* what() const throw()
+    {
+      return "Unacceptable input";
+    }
+};
+
+int main()
+{
+  int n,d,first,last,temp;
+  cout<<"Enter any number: ";
+  cin>>n;
+  if(n<0)
+    throw InvalidInputException();
+  d=n;
+  first=n%10;
+  while(d>=10)
+  {
+    d/=10;
+  }
+  last=d;
+  temp=first;
+  first=last;
+  last=temp;
+  n=n/10;
+  n=n*10+last;
+  n=n*10+first;
+  cout<<"Number after swapping first and last digit: "<<n;
+  return 0;
+}
+---------------------------------------------------------------------------
+3. Write a C++ program to sum all positive integers in a sentence using a virtual function.
+------------------------------
+ans: correct.
+---------------------------------------------------------
+#include <iostream>
+using namespace std;
+
+class sentence {
+    public:
+        virtual int sum() = 0;
+};
+
+class positive_sentence : public sentence {
+    public:
+        int sum() {
+            int total = 0;
+            string input;
+            cin>> input;
+            for (int i = 0; i < input.length(); i++) {
+                if (isdigit(input[i])) {
+                    total += input[i] - '0';
+                }
+            }
+            return total;
+        }
+};
+
+int main() {
+    sentence *s = new positive_sentence();
+    cout << s->sum() << endl;
+    return 0;
+}
+-------------------------------------------------------------
+4. Write a C++ program to check whether a given sequence in an array is in ascending order or not.
+ans: correct.
+----------------------------------
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int n;
+    cout<<"Enter the size of the array: ";
+    cin>>n;
+    int arr[n];
+    cout<<"Enter the elements of the array: ";
+    for(int i=0;i<n;i++)
+    {
+    	cin>>arr[i];
+	}
+    int flag=0;
+    for(int i=0;i<n;i++)
+    {
+    	if(arr[i+1]>arr[i])
+    	{
+    		flag=1;
+		}
+		else
+		{
+			flag=0;
+			break;
+		}
+	}
+    if(flag==1)
+    {
+    	cout<<"The given array is in ascending order";
+	}
+	else
+	{
+		cout<<"The given array is not in ascending order";
+	}
+    return 0;
+}
+--------------------------------------------------------------------
+
+
